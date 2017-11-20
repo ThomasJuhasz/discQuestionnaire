@@ -15,7 +15,7 @@ export interface Answer {
   personality: Personality;
 }
 
-export const questions: Array<Question> = [
+export const QUESTIONS: Array<Question> = [
   {
     number: 1,
     answers: [
@@ -125,7 +125,7 @@ export const questions: Array<Question> = [
     number: 6,
     answers: [
       {
-        title: 'szolíd',
+        title: 'szolid',
         personality: Personality.S
       },
       {

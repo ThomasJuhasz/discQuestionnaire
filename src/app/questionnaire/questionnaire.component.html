@@ -1,23 +1,42 @@
-<h4>Simple sortable</h4>
-<div class="row">
-    <div class="col-sm-3">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                Favorite drinks
-            </div>
-            <div class="panel-body">
-                <ul class="list-group" dnd-sortable-container [sortableData]="listOne">
-                    <li *ngFor="let item of listOne; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+<div class="container">    
+    <p>Tedd sorrendbe a következő elemeket! <br> A rád legjobban jellemző legyen felül!</p>
+    <ng-container *ngFor="let question of questions; let i = index">
+        <div *ngIf="i == activeQuestion">
+            <div class="panel">
+                <div class="panel-heading">
+                    {{question.number}}/{{questions.length}}
+                </div>
+                <ul class="list-group" dnd-sortable-container [sortableData]="question.answers">
+                    <li *ngFor="let answer of question.answers; let j = index" 
+                        class="list-group-item" 
+                        dnd-sortable 
+                        [sortableIndex]="j">
+                        <a href="https://www.google.hu/search?q={{answer.title}}+jelentése" target="_blank">
+                            <img src="../../assets/info.svg">
+                        </a>
+                        {{answer.title}}
+
+                        <span class="point">
+                            {{toPoint(j)}}
+                        </span>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                My prefences:<br/>
-                <span *ngFor="let item of listOne; let i = index">{{i + 1}}) {{item}}<br/></span>
-            </div>
+    </ng-container>
+    <div class="panel" *ngIf="activeQuestion === questions.length">
+        <p>Eredmény</p>
+        <div class="result-letter result-letter-{{item.title}}" *ngFor="let item of results; let j = index">
+            {{item.title}}: {{item.value}}
         </div>
+        <div style="clear: both;"></div>
+    </div> 
+
+    <div class="button-container">
+        <button class="secondary" *ngIf="activeQuestion > 0 && activeQuestion < questions.length" (click)="prevQuestion()">Előző</button>
+        <button class="primary" (click)="nextQuestion()" *ngIf="activeQuestion < questions.length">
+            {{ activeQuestion === questions.length - 1 ? "Eredmény" : "Következő" }}
+        </button>
+        <button class="secondary full" *ngIf="activeQuestion >= questions.length" (click)="restart()">Újra kitöltöm</button>
     </div>
 </div>
