@@ -3,14 +3,18 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import {DndModule} from 'ng2-dnd';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QuestionnaireComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    DndModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
