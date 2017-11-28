@@ -25,17 +25,13 @@
         </div>
     </ng-container>
     <div class="panel" *ngIf="activeQuestion === questions.length">
-        <p>Eredmény</p>
+        <p>Eredmény
+          <a href="https://1drv.ms/f/s!AvfG7I3FKYWEgaZypz2zdT22l4yc0A" target="_blank"><img src="../../assets/info.svg" style="height: 20px; float: right; margin-top: 3px;"></a>
+        </p>
         <div class="result-letter result-letter-{{item.title}}" *ngFor="let item of results; let j = index">
             {{item.title}}: {{item.value}}
         </div>
-        <div style="clear: both;"></div>
-      <div>
-        Az eredmény értékelése:
-        <a href="https://1drv.ms/f/s!AvfG7I3FKYWEgaZypz2zdT22l4yc0A" target="_blank">
-          https://1drv.ms/f/s!AvfG7I3FKYWEgaZypz2zdT22l4yc0A
-        </a>
-      </div>  
+        <div style="clear: both;"></div> 
     </div> 
 
     <div class="button-container">
